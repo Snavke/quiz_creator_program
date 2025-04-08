@@ -86,14 +86,30 @@ while True:
                         print (f"    {letter}. {choice}")
                     print (f"Answer: {data['Answer']}")
                     
-        # Store collected data per user "session" to text file            
-                with open("quiz_output.txt", "w") as file:
+        # Store collected data per user "session" to text file   
+                from datetime import datetime
+                import os   
+                
+        # Creates a separate folder to store quiz txt files
+                folder_name = "Quizzes"
+                if not os.path.exists(folder_name):
+                    os.makedirs(folder_name)
+
+                file_name = os.path.join(folder_name, datetime.now().strftime("%Y-%m-%d_%H-%M-%S.txt"))
+
+                
+                         
+                with open(file_name, "w") as file:
+                        file.write(f"Created New Quiz at - {datetime.now().strftime('%Y-%m-%d %H:%M:%S')}\n")
+                        file.write("\n" + "~"*40 + "\n")
+                        
                         for question_id, data in dict_quiz.items():    
                             file.write (f"\n{question_id}: {data['Question']}\n")
                             for letter, choice in data['Choices'].items():
                                 file.write (f"    {letter}. {choice}\n")
                         file.write (f"Answer: {data['Answer']}\n\n")
         
+        # Inform user txt file is saved in within the program's folder
                 import time
                 print("Saving quiz", end='', flush=True)
                 for msg in [" .", " ..", " ..."]:
