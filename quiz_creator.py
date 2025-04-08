@@ -28,10 +28,11 @@ while True:
 # Confirm questions, choice, and answers, give option to redo & Add functionality to choose question to delete, or to edit (will overwrite)
     exit_prompt = input("Continue adding question? (yes/edit/delete/exit): ").lower()
 
+# To edit functionality
     if exit_prompt == "edit":
         print ("\n Questions:")
-        for items in dict_quiz:
-            print (items)
+        for question_id in dict_quiz:
+            print (question_id)
 
         to_edit = input("Please enter the Question number to edit (number only): ")
         key = f"Question {to_edit}"
@@ -55,14 +56,28 @@ while True:
         else: 
             print ("Invalid question number.")
         
+# To delete functionality
+    elif exit_prompt == "delete":
+        print ("\nQuestions:")
+        for question_id in dict_quiz:
+            print (question_id)
+
+
+        to_delete = input("Please enter the Question number to delete (number only): ")
+        key = f"Question {to_delete}"
+        if key in dict_quiz:
+            del dict_quiz[key]
+            print (f"Successfully deleted {key}.")
+        else:
+            print ("Invalid question number.")
 
 
 # Program terminates if yes
-    if exit_prompt != "yes":
+    elif exit_prompt != "yes":
         print ("\nQuiz Summary: ")
-        for question_id, data in dict_quiz.items():    
+        for question_id, data in dict_quiz.question_id():    
             print (f"\n{question_id}: {data['Question']}")
-            for letter, choice in data['Choices'].items():
+            for letter, choice in data['Choices'].question_id():
                 print (f"    {letter}. {choice}")
             print (f"Answer: {data['Answer']}")
         break
