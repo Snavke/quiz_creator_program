@@ -7,14 +7,19 @@ while True:
 # Asks question
     question_input = input("Enter Question: ")
 # Asks choices
-    choices_input = input("Enter 4 Possible Choices: ")
+    choice_labels = ['A', 'B', 'C', 'D']
+    choices_dict = {}
+    print ("Enter the 4 Choices: ")
+    for label in choice_labels:
+        choice_text = input(f"Choice {label}: ")
+        choices_dict[label] = choice_text
 # Asks answer
     answer_input = input("Enter Answer (The Letter): ")
 
 # Store data to dictionary
     dict_quiz[f"Question {question_number}"] = {
         "Question": question_input,
-        "Choices": choices_input,
+        "Choices": choices_dict,
         "Answer": answer_input
     }
     
@@ -26,8 +31,9 @@ while True:
     if exit_prompt != "yes":
         print ("\nQuiz Summary: ")
         for question_id, data in dict_quiz.items():    
-            print (f"{question_id}: {data['Question']}")
-            print (f"Choices: {data['Choices']}")
+            print (f"\n{question_id}: {data['Question']}")
+            for letter, choice in data['Choices'].items():
+                print (f"    {letter}. {choice}")
             print (f"Answer: {data['Answer']}")
         break
 
