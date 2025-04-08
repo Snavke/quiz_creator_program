@@ -85,10 +85,25 @@ while True:
                     for letter, choice in data['Choices'].items():
                         print (f"    {letter}. {choice}")
                     print (f"Answer: {data['Answer']}")
+                    
+        # Store collected data per user "session" to text file            
+                with open("quiz_output.txt", "w") as file:
+                        for question_id, data in dict_quiz.items():    
+                            file.write (f"\n{question_id}: {data['Question']}\n")
+                            for letter, choice in data['Choices'].items():
+                                file.write (f"    {letter}. {choice}\n")
+                        file.write (f"Answer: {data['Answer']}\n\n")
+        
+                import time
+                print("Saving quiz", end='', flush=True)
+                for msg in [" .", " ..", " ..."]:
+                    time.sleep(0.5)
+                    print(msg, end='', flush=True)
+                print("\nDone! File saved as 'quiz_output.txt'")
                 exit()
 
             else: 
                 print ("Invalid input. Please enter yes/edit/delete/exit.")
 
 
-# Store collected data per user "session" to text file
+
