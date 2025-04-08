@@ -1,23 +1,31 @@
-# list to store inputs
-list_questions = []
-list_choices = []
-list_answer = []
+# dictionary to store inputs
+dict_questions = {}
+dict_choices = {}
+dict_answer = {}
 
 # User provides questions
+while True:
+    question_input = input("Enter Question: ")
+    choices_input = input("Enter 4 Possible Choices: ")
+    answer_input = input("Enter Answer (The Letter): ")
 
-question_input = input("Enter Question: ")
-list_questions.append(question_input) 
+    dict_questions = {"Question": question_input}
+    dict_choices = {"Choices": choices_input}
+    dict_answer ={"Answer": answer_input}
 
+    exit_prompt = input("Continue adding question? (yes/no): ").lower
+
+    if exit_prompt != "yes":
+        break
+
+print (dict_questions, dict_choices, dict_answer)
 # User provides possible choices
-choices_input = input("Enter 4 Possible Choices: ")
-list_choices.append(choices_input)
 
 # User provides correct answer from possible choices
-answer_input = input("Enter Answer (The Letter): ")
-list_answer.append(answer_input)
 
 
-print (list_questions, list_choices, list_answer)
+
+print ()
 # Confirm questions, choice, and answers, give option to redo
 
 # Continue asking until user chooses to terminate program
