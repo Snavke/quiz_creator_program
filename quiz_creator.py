@@ -89,17 +89,16 @@ while True:
         # Store collected data per user "session" to text file   
                 from datetime import datetime
                 import os   
-                
-        # Creates a separate folder to store quiz txt files
+
+        # Creates a separate folder to store quiz txt files and names appropriately
                 folder_name = "Quizzes"
                 if not os.path.exists(folder_name):
                     os.makedirs(folder_name)
 
                 file_name = os.path.join(folder_name, datetime.now().strftime("%Y-%m-%d_%H-%M-%S.txt"))
-
-                
-                         
+ 
                 with open(file_name, "w") as file:
+                        file.write("\n" + "~"*40 + "\n")
                         file.write(f"Created New Quiz at - {datetime.now().strftime('%Y-%m-%d %H:%M:%S')}\n")
                         file.write("\n" + "~"*40 + "\n")
                         
@@ -120,6 +119,3 @@ while True:
 
             else: 
                 print ("Invalid input. Please enter yes/edit/delete/exit.")
-
-
-
